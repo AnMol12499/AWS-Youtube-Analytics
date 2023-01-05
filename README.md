@@ -25,7 +25,10 @@ This Kaggle dataset contains statistics (CSV files) on daily popular YouTube vid
 
 https://www.kaggle.com/datasets/datasnaek/youtube-new
 
-## Architecture Diagram
+## Transformation of Raw to Cleaned data flow diagram
+<img src="Raw_to_Cleandata_architecture.png">
+
+## Overall Architecture Diagram
 <img src="architecture.jpeg">
 
 
