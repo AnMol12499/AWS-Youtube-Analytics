@@ -27,6 +27,30 @@ https://www.kaggle.com/datasets/datasnaek/youtube-new
 
 ## Transformation of Raw to Cleaned data flow diagram
 <img src="Raw_to_Cleandata_architecture.png">
+Cleaned Data from Raw Data using AWS Lambda
+
+### Steps:
+
+1. Setup AWS Lambda: Create a function with Python 3.8 runtime and set an execution role for S3 access.
+2. ETL Code: Utilize AWS Wrangler for S3 access and pandas for data processing. Normalize data and save in Parquet format.
+3. Environment Variables: Store output location, catalog name, table name, and data write operation.
+4. Test Function: Use an S3 put event and provide the bucket name and file for testing.
+5. Error Handling: Add necessary Lambda layers for missing packages and adjust timeout if needed.
+6. AWS Glue Integration: Create a catalog and table for cleaned data.
+7. Query with AWS Athena: Convert JSON data to a structured tabular form.
+Automation: Automate the conversion of raw data to the clean version.
+
+### Challenges:
+
+1. Handling missing packages in Lambda.
+2. Addressing Lambda's timeout limits.
+3. Ensuring correct permissions for data access.
+4. Normalizing diverse raw data formats.
+5. Handling potential errors during testing.
+6. Managing data size limitations of Lambda.
+7. Ensuring high data quality during cleaning.
+
+Note: This project transforms raw data into cleaned, structured data using AWS services. Suitable for further analysis and visualization.
 
 ## Overall Architecture Diagram
 <img src="architecture.jpeg">
