@@ -5,7 +5,7 @@ from pyspark.context import SparkContext
 from awsglue.context import GlueContext
 from awsglue.job import Job
 
-############################### Added by Carlos ###############################
+
 from awsglue.dynamicframe import DynamicFrame
 
 
@@ -21,7 +21,7 @@ job.init(args['JOB_NAME'], args)
 ## @args: [database = "db_youtube_raw", table_name = "raw_statistics", transformation_ctx = "datasource0"]
 ## @return: datasource0
 ## @inputs: []
-############################### Added by Darshil ###############################
+
 predicate_pushdown = "region in ('ca','gb','us')"
 
 datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "db_youtube_raw", table_name = "raw_statistics", transformation_ctx = "datasource0", push_down_predicate = predicate_pushdown)
@@ -46,12 +46,12 @@ dropnullfields3 = DropNullFields.apply(frame = resolvechoice2, transformation_ct
 ## @return: datasink4
 ## @inputs: [frame = dropnullfields3]
 
-############################### Added by Darshil ###############################
+
 #MAKE SURE YOU COPY ONLY WHAT IS NEEDED
 
 datasink1 = dropnullfields3.toDF().coalesce(1)
 df_final_output = DynamicFrame.fromDF(datasink1, glueContext, "df_final_output")
 datasink4 = glueContext.write_dynamic_frame.from_options(frame = df_final_output, connection_type = "s3", connection_options = {"path": "s3://de-on-youtube-cleansed-useast1-dev/youtube/raw_statistics/", "partitionKeys": ["region"]}, format = "parquet", transformation_ctx = "datasink4")
 
-############################### Added by Darshil ###############################
+
 job.commit()
